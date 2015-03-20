@@ -26,12 +26,23 @@ ApplicationWindow {
 
             TextField {id: textField; placeholderText: "..."; Layout.fillWidth: true; z: 1 ; width: parent.width}
 
-            Button { text: "Go";
+            Button {
+                id: button1;
+                text: "Go";
                 isDefault: true;
                 width: parent.width;
                 anchors.left: textField.right;
+
+
+                function changeUrl () {
+                    webview.url =  textField.text;
+                    console.log(textField.text);
+                    webview.update();
+                return;
+                }
+
                 onClicked: {
-                    console.log("send signal emitted with notice");
+                    changeUrl();
                 }
             }
 
