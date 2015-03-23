@@ -35,8 +35,7 @@ ApplicationWindow {
 
 
                 function changeUrl () {
-                    webview.url =  textField.text;
-                    console.log(textField.text);
+                    webview.url = textField.text;
                     webview.update();
                 return;
                 }
