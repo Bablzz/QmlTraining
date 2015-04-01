@@ -35,7 +35,15 @@ ApplicationWindow {
 
 
                 function changeUrl () {
-                    webview.url = textField.text;
+                    var txt;
+                    var buffer;
+                    buffer = textField.text.substring(0, 7);
+                    if ((buffer === 'http://') || (buffer === 'https:/')) {
+                        webview.url = textField.text;
+                    } else {
+                        txt = 'http://'+textField.text;
+                        webview.url = txt;
+                    }
                     webview.update();
                 return;
                 }
