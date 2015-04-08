@@ -24,6 +24,7 @@ ApplicationWindow {
             //Layout.minimumHeight: 100
             anchors.fill: parent
 
+
             TextField {id: textField; placeholderText: "..."; Layout.fillWidth: true; z: 1 ; width: parent.width}
 
             Button {
@@ -33,6 +34,10 @@ ApplicationWindow {
                 width: parent.width;
                 anchors.left: textField.right;
 
+                menu: Menu {
+                    MenuItem { text: "Go"; onTriggered: button1.changeUrl();           }
+                    MenuItem { text: "Add Favorite"; onTriggered: favoritAddButton.addFavoritePage()  }
+                }
 
                 function changeUrl () {
                     var txt;
@@ -45,12 +50,24 @@ ApplicationWindow {
                         webview.url = txt;
                     }
                     webview.update();
-                return;
+                    return;
+                }
+            }
+
+            Button {
+                id: favoritAddButton;
+                text: "Add start page"
+                isDefault: true;
+                anchors.left: button1.right;
+
+                function addFavoritePage () {
+                    favButton.text = webview.url;
                 }
 
                 onClicked: {
-                    changeUrl();
+                    addFavoritePage();
                 }
+
             }
 
         }
@@ -62,6 +79,30 @@ ApplicationWindow {
             height: 900
             scale: 0.9
             smooth: false
+        }
+        RowLayout {
+            id: layoutFooter
+            Layout.minimumWidth: 50
+            Layout.preferredWidth: 100
+            Layout.maximumWidth: 300
+            //Layout.minimumHeight: 100
+            anchors.top: webview.bottom
+
+
+            Button {
+                id:favButton
+                text: ""
+
+                function openFavoritePage () {
+                    webview.url = favButton.text;
+                    webview.update();
+                }
+
+                onClicked: {
+                    openFavoritePage();
+                }
+
+            }
         }
     }
 }
