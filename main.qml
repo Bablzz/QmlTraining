@@ -13,8 +13,8 @@ ApplicationWindow {
     ColumnLayout {
         id: layoutLMain;
         anchors.fill: parent
-        width: parent.width
-        height: parent.height
+        //        width: parent.width
+        //        height: parent.height
 
         RowLayout {
             id: layoutR
@@ -22,7 +22,7 @@ ApplicationWindow {
             Layout.preferredWidth: 100
             Layout.maximumWidth: 300
             //Layout.minimumHeight: 100
-            anchors.fill: parent
+            //anchors.fill: parent
 
 
             TextField {id: textField; placeholderText: "..."; Layout.fillWidth: true; z: 1 ; width: parent.width}
@@ -71,14 +71,17 @@ ApplicationWindow {
             }
 
         }
+        RowLayout {
+            id:layoutCenter
+            anchors.top: layoutR.bottom
+            anchors.bottom: layoutFooter.top
 
-        WebView  {
-            id: webview
-            url: "http://www.yandex.ru"
-            width: 900
-            height: 900
-            scale: 0.9
-            smooth: false
+
+            WebView  {
+                id: webview
+                url: "http://www.yandex.ru"
+                anchors.fill: parent
+            }
         }
         RowLayout {
             id: layoutFooter
@@ -86,7 +89,7 @@ ApplicationWindow {
             Layout.preferredWidth: 100
             Layout.maximumWidth: 300
             //Layout.minimumHeight: 100
-            anchors.top: webview.bottom
+            //anchors.top: webview.bottom
 
 
             Button {
